@@ -1,0 +1,203 @@
+PHP 8 con laravel version 8.65 y mysql
+================================================================
+mi tabla de base de datos donde almacenos las imagenes por ruta :
+CREATE TABLE proyectos (
+  id bigint(20) UNSIGNED NOT NULL,
+  name varchar(60) NOT NULL,
+  slug varchar(191) DEFAULT NULL,
+  cover_image varchar(191) NOT NULL,
+  description text DEFAULT NULL,
+  content text DEFAULT NULL,
+  status enum('publish','draft') DEFAULT NULL,
+  user_id bigint(20) UNSIGNED NOT NULL,
+  created_at timestamp NULL DEFAULT NULL,
+  updated_at timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO proyectos (id, name, slug, cover_image, description, content, status, user_id, created_at, updated_at) VALUES
+(1, 'Proyecto 01', 'proyecto-01', '/storage/photos/1/proyectos/foto-59.png', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis augue erat, in pellentesque', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis augue erat, in pellentesque magna porta sed. In sodales imperdiet risus eu pulvinar. Praesent accumsan nibh non ornare faucibus. Pellentesque quis enim elit. Pellentesque semper ex a vehicula vulputate. Integer vitae mauris aliquam, porttitor tellus sed, fermentum nunc. Integer tempus ligula lorem, quis gravida ex egestas in. Fusce vitae tincidunt erat. Praesent augue justo, auctor ut nibh id, tristique volutpat ex.</p>', 'publish', 1, '2022-08-24 22:31:20', '2025-11-21 23:21:52'),
+(2, 'Proyecto 02', 'proyecto-02', '/storage/photos/1/proyectos/foto-22.png', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis augue erat, in pellentesque', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis augue erat, in pellentesque magna porta sed. In sodales imperdiet risus eu pulvinar. Praesent accumsan nibh non ornare faucibus. Pellentesque quis enim elit. Pellentesque semper ex a vehicula vulputate. Integer vitae mauris aliquam, porttitor tellus sed, fermentum nunc. Integer tempus ligula lorem, quis gravida ex egestas in. Fusce vitae tincidunt erat. Praesent augue justo, auctor ut nibh id, tristique volutpat ex.</p>', 'publish', 1, '2022-08-24 22:31:47', '2025-11-21 23:22:39'),
+(3, 'Proyecto 03', 'proyecto-03', '/storage/photos/1/proyectos/foto-03.png', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis augue erat, in pellentesque', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis augue erat, in pellentesque magna porta sed. In sodales imperdiet risus eu pulvinar. Praesent accumsan nibh non ornare faucibus. Pellentesque quis enim elit. Pellentesque semper ex a vehicula vulputate. Integer vitae mauris aliquam, porttitor tellus sed, fermentum nunc. Integer tempus ligula lorem, quis gravida ex egestas in. Fusce vitae tincidunt erat. Praesent augue justo, auctor ut nibh id, tristique volutpat ex.</p>', 'publish', 1, '2022-08-24 22:32:15', '2025-11-21 23:26:53'),
+(4, 'Proyecto 04', 'proyecto-04', '/storage/photos/1/proyectos/foto-20.png', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis augue erat, in pellentesque', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis augue erat, in pellentesque magna porta sed. In sodales imperdiet risus eu pulvinar. Praesent accumsan nibh non ornare faucibus. Pellentesque quis enim elit. Pellentesque semper ex a vehicula vulputate. Integer vitae mauris aliquam, porttitor tellus sed, fermentum nunc. Integer tempus ligula lorem, quis gravida ex egestas in. Fusce vitae tincidunt erat. Praesent augue justo, auctor ut nibh id, tristique volutpat ex.</p>', 'publish', 1, '2022-08-24 22:34:14', '2025-11-21 23:28:07'),
+(5, 'Proyecto 05', 'proyecto-05', '/storage/photos/1/proyectos/foto-40.png', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis augue erat, in pellentesque', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis augue erat, in pellentesque magna porta sed. In sodales imperdiet risus eu pulvinar. Praesent accumsan nibh non ornare faucibus. Pellentesque quis enim elit. Pellentesque semper ex a vehicula vulputate. Integer vitae mauris aliquam, porttitor tellus sed, fermentum nunc. Integer tempus ligula lorem, quis gravida ex egestas in. Fusce vitae tincidunt erat. Praesent augue justo, auctor ut nibh id, tristique volutpat ex.</p>', 'publish', 1, '2022-08-24 22:34:46', '2025-11-21 23:31:11'),
+(8, 'Proyecto 06', 'proyecto-06', '/storage/photos/1/proyectos/foto-04.png', 'demo', '<p>demo</p>', 'publish', 1, '2025-11-21 23:32:56', '2025-11-21 23:32:56'),
+(9, 'Proyecto 07', 'proyecto-07', '/storage/photos/1/proyectos/foto-07.png', 'demo', '<p>demo</p>', 'publish', 1, '2025-11-21 23:38:59', '2025-11-21 23:38:59');
+
+=========================================================================
+
+App/config.php :
+
+<?php
+
+return [
+    'default' => env('FILESYSTEM_DRIVER', 'local'),
+    'disks' => [
+        'local' => [
+            'driver' => 'local',
+            'root' => storage_path('app'),
+        ],
+        'public' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public'),
+            'url' => env('APP_URL') . '/storage',
+            'visibility' => 'public',
+        ],
+
+        's3' => [
+            'driver' => 's3',
+            'key' => env('AWS_ACCESS_KEY_ID'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY'),
+            'region' => env('AWS_DEFAULT_REGION'),
+            'bucket' => env('AWS_BUCKET'),
+            'url' => env('AWS_URL'),
+            'endpoint' => env('AWS_ENDPOINT'),
+            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+        ],
+
+    ],
+    'links' => [
+       public_path('storage') => storage_path('app/public'),
+    ],
+];
+
+=================================================================================
+
+Directorio del proyecto :
+
+ProyectoLaravel
+	|_______public
+	           |_______storage
+		              |________photos
+			                  |_________1
+					            |________proyectos
+						                 |___foto-03.png
+								 |___foto-04.png
+								 |___foto-07.png
+								 |___foto-20.png
+								 |___foto-22.png
+								 |___foto-40.png
+								 |___foto-59.png
+
+================================================================================
+
+ProyectoController.php :
+
+    public function mostrar()
+    {
+        return view('proyectos.mostrar', [
+            'servicios_menu' => Servicios::where('status', 'publish')
+                                        ->where('destacado', 'si')
+                                        ->get(),   
+            'proyectos' => Evento::where('status', 'publish')->paginate(6),    
+        ]);
+    }
+===============================================================================
+
+mostrar.blade.php :
+funciona perfectamente en entorno desarrollo (local) las imagenes si se visualizan :
+
+ <div class="col-lg-4 ">
+    <div class="latest-post post-large project-post-large">
+	<div class="latest-post-media project-post-media">
+	    <a class="latest-post-img" href="{{ $proyecto->slug }}">
+		<img class="img-fluid" src="{{ asset($proyecto->cover_image) }}">
+	    </a>
+	    <div class="post-body project-body project-post-body">
+		<a class="post-cat" href="{{ route('blog.proyecto.details', ['slug'=>$proyecto->slug]) }}">{{ $proyecto->name }}</a>
+		<a class="btn btn-primary" href="{{ route('blog.proyecto.details', ['slug'=>$proyecto->slug]) }}">Más Información</a>
+	    </div>
+	</div>
+    </div>
+</div>
+
+// si muestra las imagenes, pero solo en local (Mi PC) no en producción
+
+=============================================================================
+
+.env (producción) :
+
+APP_NAME=Norez-Corp
+APP_ENV=production
+APP_KEY=base64:PfTau6kWLTWsBKkQyfjjBBfKpn0o8u74WgYbAZktbsI=
+APP_DEBUG=true
+APP_URL=https://norez-corp.com
+
+LOG_CHANNEL=stack
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=debug
+
+DB_CONNECTION=mysql
+DB_HOST=localhost
+DB_PORT=3306
+DB_DATABASE=u342372959_dbnorezcorp
+DB_USERNAME=u342372959_usrnorezcorp
+DB_PASSWORD=k&F026R&
+
+BROADCAST_DRIVER=log
+CACHE_DRIVER=file
+FILESYSTEM_DRIVER=local
+QUEUE_CONNECTION=sync
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
+
+MEMCACHED_HOST=127.0.0.1
+
+============================================================================
+
+En producción (https://norez-corp.com), navegador -> ver codigo fuente :
+
+(No se visualiza las imagenes de proyectos )
+  <div class="row text-center">
+                <div class="col-md-12">
+                    <h2 class="section-title"><span>Contamos con toda la maquinaria necesaria, podemos ofrecerte precios
+                            directo de fábrica, sin intermediarios</span>
+                        Nuestros Proyectos</h2>
+                </div>
+            </div>
+
+                            
+                                    <div class="row">
+                
+                <div class="col-lg-4 ">
+                    <div class="latest-post post-large project-post-large">
+                        <div class="latest-post-media project-post-media">
+                            <a class="latest-post-img" href="proyecto-01">
+                                <img class="img-fluid" src="https://norez-corp.com/storage/photos/1/proyectos/foto-59.png">
+                            </a>
+                            <div class="post-body project-body project-post-body">
+                                <a class="post-cat" href="https://norez-corp.com/proyecto/proyecto-01">Proyecto 01</a>
+                                <a class="btn btn-primary" href="https://norez-corp.com/proyecto/proyecto-01">Más Información</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                        
+                    
+                
+                <div class="col-lg-4 ">
+                    <div class="latest-post post-large project-post-large">
+                        <div class="latest-post-media project-post-media">
+                            <a class="latest-post-img" href="proyecto-02">
+                                <img class="img-fluid" src="https://norez-corp.com/storage/photos/1/proyectos/foto-22.png">
+                            </a>
+                            <div class="post-body project-body project-post-body">
+                                <a class="post-cat" href="https://norez-corp.com/proyecto/proyecto-02">Proyecto 02</a>
+                                <a class="btn btn-primary" href="https://norez-corp.com/proyecto/proyecto-02">Más Información</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+<img class="img-fluid" src="https://norez-corp.com/storage/photos/1/proyectos/foto-59.png"> // Aqui en producción no se visualiza, la imagen si existe.
+==================================================================================================================================
+
+tambien ejecuté el comando : php artisan storage:link correctamente
+
+tengo un enlace simbolico en :
+	https://norez-corp.com
+		|____public
+			|_____storage // enlace simbolico
+				
+
+no se visualiza las imagenes de proyectos (cover_image), solo en entorno de producción, donde está mi error ?
