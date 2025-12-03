@@ -142,10 +142,7 @@
                                     <label for="lbl_articulo_metatitle" class="font-weight-bold">
                                         Meta Titulo
                                     </label>
-                                    <input id="input_meta_title" value="{{ old('metatitle', $articulo->metatitle) }}"
-                                        name="metatitle" type="text"
-                                        class="form-control form-control-sm @error('metatitle') is-invalid @enderror"
-                                        placeholder="Meta Titulo de Articulo" />
+                                    <textarea class="form-control form-control-sm @error('metatitle') is-invalid @enderror" name="metatitle" id="metatitle" cols="30" rows="2">{{ old('metatitle', $articulo->metatitle) }}</textarea>    
                                     @error('metatitle')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -157,11 +154,7 @@
                                     <label for="lbl_servicio_metadescription" class="font-weight-bold">
                                         Meta Description
                                     </label>
-                                    <input id="input_meta_description"
-                                        value="{{ old('metadescription', $articulo->metadescription) }}"
-                                        name="metadescription" type="text"
-                                        class="form-control form-control-sm @error('metadescription') is-invalid @enderror"
-                                        placeholder="Meta Description de Articulo" />
+                                   <textarea class="form-control form-control-sm @error('metadescription') is-invalid @enderror" name="metadescription" id="metadescription" cols="30" rows="4">{{ old('metadescription', $articulo->metadescription) }}</textarea> 
                                     @error('metadescription')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

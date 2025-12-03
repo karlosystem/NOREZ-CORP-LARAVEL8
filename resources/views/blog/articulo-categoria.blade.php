@@ -1,7 +1,6 @@
 @extends('layouts.blog')
 @section('title',  $servicio->metatitle )
 @section('description', $servicio->metadescription )
-
 @section('content')
     <div class="banner-area" id="banner-area"
         style="background-image:url({{ asset('vendor/my-blog/images/contactenos/banner.png') }});">

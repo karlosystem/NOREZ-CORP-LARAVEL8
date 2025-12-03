@@ -1,8 +1,6 @@
 @extends('layouts.blog')
-
-@section('title')
-    {{ $articulo->title }}
-@endsection
+@section('title',  $articulo->metatitle )
+@section('description', $articulo->metadescription )
 
 @section('content')
     <div class="banner-area" id="banner-area"
