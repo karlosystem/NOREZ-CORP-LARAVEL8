@@ -1,8 +1,7 @@
 @extends('layouts.blog')
 
-@section('title')
-    Publicidad Grafica Exterior en Lima
-@endsection
+@section('title', 'Avisos - Paneles - Letreros Luminosos Publicitarios - Modulos Desarmables')
+@section('description', 'Fabricantes de Modulos Publicitarios desarmables, Letreros Luminosos, paneles publicitarios de Gran Tamaño, Letras y letreros en MDF, acrílico, acero inoxidable, aluminio, cajas luminosas, Letreros con luces led')
 
 @section('content')
     @include('blog.inc.slider')

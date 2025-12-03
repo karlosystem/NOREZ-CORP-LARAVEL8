@@ -1,8 +1,7 @@
 @extends('layouts.blog')
 
-@section('title')
-    Servicios
-@endsection
+@section('title', 'Servicios de Publicidad Grafica de Gran Tamaño')
+@section('description', 'Todo nuestro conocimiento y experiencia a su servicio. Si está interesado en algunos de nuestros servicios no dude en contactar con nosotros.')
 
 @section('content')
     <div class="banner-area" id="banner-area"

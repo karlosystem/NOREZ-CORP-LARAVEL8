@@ -164,10 +164,9 @@
                                     <label for="lbl_servicio_metadescription" class="font-weight-bold">
                                         Meta Description
                                     </label>
-                                    <input id="input_meta_description" value="{{ old('metadescription', $servicio->metadescription) }}" name="metadescription"
-                                        type="text"
-                                        class="form-control form-control-sm @error('metadescription') is-invalid @enderror"
-                                        placeholder="Meta Description de Servicio" />
+                                    
+                                    <textarea class="form-control form-control-sm @error('metadescription') is-invalid @enderror" name="metadescription" id="metadescription" cols="30" rows="3">{{ old('metadescription', $servicio->metadescription) }}</textarea>    
+
                                     @error('metadescription')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
