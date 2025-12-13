@@ -16,8 +16,8 @@
                             <h2 class="slide-title title-light">{{ $slider->descripcion }}</h2>
                             <h3 class="slide-sub-title">{{ $slider->name }}</h3>
                             <p class="slider-description lead">{{ $slider->leyenda }}</p>
-                            <p><a class="slider btn btn-primary" href="{{ $slider->link }}">Más Información</a><a
-                                    class="slider btn btn-border" href="">Ver Servicios</a></p>
+                            <p><a class="slider btn btn-primary" target="_self" href="{{ $slider->link }}">Más Información</a><a
+                                    class="slider btn btn-border" href="{{ route('servicios.mostrar') }}">Ver Servicios</a></p>
                         </div>
                     </div>                    
                 </div>

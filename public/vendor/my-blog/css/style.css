@@ -1526,7 +1526,7 @@ ul.top-menu li a:hover {
 
 .top-info {
   list-style: none;
-  margin: 35px -50px 0;
+  margin: 35px -20px 0;
   padding: 0;
   float: right;
 }
@@ -1537,7 +1537,7 @@ ul.top-menu li a:hover {
   margin-right: 0;
   padding-right: 0;
   border-right: 0;
-  margin-left: 35px;
+  margin-left: 15px;
 }
 .top-info .info-icon {
   font-size: 16px;
@@ -1545,16 +1545,16 @@ ul.top-menu li a:hover {
   display: inline-block;
   top: -15px;
   position: relative;
-  margin-right: 20px;
+  margin-right: 10px;
   background: #00699b;
-  padding: 3px 10px 3px 10px;
+  padding: 3px 5px 3px 5px;
   border-radius: 3px;
 }
 .top-info .info-wrapper {
   display: inline-block;
-  margin-right: 30px;
+  margin-right: 8px;
   position: relative;
-  padding-right: 10px;
+  padding-right: 5px;
 }
 
 .top-info li .info-wrapper p {
@@ -1569,11 +1569,11 @@ ul.top-menu li a:hover {
   background: none;
 }
 .top-info li .info-wrapper p.info-subtitle {
-  font-size: 16px;
+  font-size: 12px;
   margin-bottom: 0;
   line-height: normal;
-  font-weight: 700;
-  color: #252a37;
+  font-weight: 400;
+  color: blue;
 }
 
 /* Main navigation */

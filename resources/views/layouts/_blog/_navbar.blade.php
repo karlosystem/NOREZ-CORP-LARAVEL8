@@ -3,24 +3,24 @@
            <div class="container">
                <div class="row">
                    <div class="logo-area clearfix">
-                       <div class="logo col-lg-3 col-md-12">
+                       <div class="logo col-lg-2 col-md-12">
                            <a href="{{ route('blog.home') }}">
                                <img src="{{ asset('vendor/my-blog/images/logo.png') }}" alt="">
                            </a>
                        </div>
                        <!-- logo end-->
-                       <div class="col-lg-9 col-md-12 pull-right">
+                       <div class="col-lg-10 col-md-12 pull-right">
                            <ul class="top-info unstyled">
                                <li><span class="info-icon"><i class="icon icon-phone3"></i></span>
                                    <div class="info-wrapper">
                                        <p class="info-title">24/7 Atención en Linea</p>
-                                       <p class="info-subtitle">(+51) 981 296 614</p>
+                                       <p class="info-subtitle">{{ $profile->mobile ?? '' }}</p>
                                    </div>
                                </li>
                                <li><span class="info-icon"><i class="icon icon-envelope"></i></span>
                                    <div class="info-wrapper">
                                        <p class="info-title">email</p>
-                                       <p class="info-subtitle">informes@norez-corp.com</p>
+                                       <p class="info-subtitle">{{ $profile->email ?? '' }}</p>
                                    </div>
                                </li>
 
@@ -49,11 +49,11 @@
                                <li class="nav-item dropdown"><a class="nav-link" href="#"
                                        data-toggle="dropdown">Acerca de<i class="fa fa-angle-down"></i></a>
                                    <ul class="dropdown-menu" role="menu">
-                                       <li><a href="about.html">Nosotros </a></li>
-                                       <li><a href="team.html">Nuestro Equipo</a></li>
-                                       <li><a href="pricing-table.html">Precios </a></li>
-                                       <li><a href="faq.html">Preguntas</a></li>
-                                       <li><a href="gallery.html">Galeria</a></li>
+                                       <li><a href="#">Nosotros </a></li>
+                                       <li><a href="#">Nuestro Equipo</a></li>
+                                       <li><a href="#">Precios </a></li>
+                                       <li><a href="#">Preguntas</a></li>
+                                       <li><a href="#">Galeria</a></li>
                                    </ul>
                                </li>
                                <!-- li end-->
@@ -64,10 +64,12 @@
                                <li class="nav-item dropdown"><a class="nav-link" href="{{ route('servicios.mostrar') }}"
                                        data-toggle="dropdown">Servicios<i class="fa fa-angle-down"></i></a>
                                    <ul class="dropdown-menu" role="menu">
-                                      @forelse ($servicios_menu as $menu_servicio)
-                                        <li><a href="{{ route('blog.articulos.categorias', ['slug' => $menu_servicio->slug]) }}">{{ $menu_servicio->title }}</a></li>
-                                      @empty
-                                      @endforelse
+                                       @forelse ($servicios_menu as $menu_servicio)
+                                           <li><a
+                                                   href="{{ route('blog.articulos.categorias', ['slug' => $menu_servicio->slug]) }}">{{ $menu_servicio->title }}</a>
+                                           </li>
+                                       @empty
+                                       @endforelse
                                    </ul>
                                </li>
                                <!-- li end-->
@@ -85,7 +87,11 @@
                            </ul>
                            <!--Nav ul end-->
                        </div>
-                       <a href="" class="top-right-btn btn btn-primary">Cotización</a>
+                       <a href="https://api.whatsapp.com/send?phone=51981296614&text=Hola%2C%20te%20escribo%20desde%20la%20pagina%20web%20de%20norez%20corp%2C%20necesito%20informacion%20de%20tus%20servicios%20y%20costos%2C%20gracias" class="btn btn-success top-right-btn"
+                           style="background-color:#25D366; border-color:#25D366;">
+                           <i class="fa fa-whatsapp" style="margin-right:8px; color:white;"></i>
+                           Chat en Vivo
+                       </a>
                        <!-- Top bar btn -->
                    </nav>
                    <!-- Collapse end-->

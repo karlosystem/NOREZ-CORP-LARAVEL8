@@ -18,9 +18,8 @@ class ProfileController extends Controller
      */
     public function index(Profile $profile)
     {
-        return view('profiles.index', [
-            'profile' => $profile
-        ]);
+        $profile = Profile::first();
+        return view('profiles.index', compact('profile'));
     }
 
     /**
@@ -73,9 +72,47 @@ class ProfileController extends Controller
      * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, Profile $profile)
     {
-        //
+        $request->validate([
+            'email'     => 'nullable|string|max:573',
+            'whastapp'  => 'nullable|string|max:573',
+            'facebook'  => 'nullable|string|max:573',
+            'tiktok'    => 'nullable|string|max:573',
+            'youtube'   => 'nullable|string|max:573',
+            'web'       => 'nullable|string|max:573',
+            'mobile'    => 'nullable|string|max:573',
+            'direccion' => 'nullable|string|max:573',
+            'city'      => 'nullable|string|max:573'
+        ]);
+        
+        DB::beginTransaction();
+
+        try {
+            $profile->update([
+                'email'     => $request->email,
+                'whastapp'  => $request->whastapp,
+                'facebook'  => $request->facebook,
+                'tiktok'    => $request->tiktok,
+                'youtube'   => $request->youtube,
+                'web'       => $request->web,
+                'mobile'    => $request->mobile,
+                'direccion' => $request->direccion,
+                'city'      => $request->city,
+                'user_id'   => Auth::id(),
+            ]);
+
+            DB::commit();
+
+            Alert::success('Mantenimiento de Profiles', 'Registro actualizado correctamente');
+            return redirect()->route('profiles.index');
+        } catch (\Throwable $e) {
+
+            DB::rollBack();
+            Alert::error('Error', 'Ocurrió un error: ' . $e->getMessage());
+            return redirect()->back()->withInput();
+        }
     }
 
     /**

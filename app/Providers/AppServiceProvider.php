@@ -5,6 +5,9 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
+use App\Models\Profile;
+use Illuminate\Support\Facades\View;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -25,5 +28,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+
+        // 🔥 Compartir el único registro de profiles con TODAS las vistas
+        View::composer('*', function ($view) {
+            $view->with('profile', Profile::first());
+        });
+        
     }
 }

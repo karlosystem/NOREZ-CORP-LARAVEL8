@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <!--
     Basic Page Needs
@@ -43,10 +44,37 @@
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file.-->
     <!--if lt IE 9
     script(src='{{ asset('vendor/my-blog/js/html5shiv.js') }}')
-    script(src='{{ asset('vendor/my-blog/js/respond.min.js') }}')
+    script(src='{{ asset('vendor/my-blog/js/respond.min.js') }}')    
     -->
-</head>
 
+    <link rel="icon" type="image/png" href="{{ asset('vendor/my-blog/images/favicon.png') }}">
+
+    <style>
+        .float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 80px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+        }
+
+        .my-float {
+            margin-top: 16px;
+        }
+    </style>
+
+    <a href="https://api.whatsapp.com/send?phone=51981296614&text=Hola%2C%20te%20escribo%20desde%20la%20pagina%20web%20de%20norez%20corp%2C%20necesito%20informacion%20de%20tus%20servicios%20y%20costos%2C%20gracias" class="float" target="_blank">
+        <i class="fa fa-whatsapp my-float"></i>
+    </a>
+
+</head>
 <body>
     <div class="body-inner">
 
@@ -79,7 +107,6 @@
         <script type="text/javascript" src="{{ asset('vendor/my-blog/vendor/my-blog/js/waypoints.min.js') }}"></script>
         <!-- Color box-->
         <script type="text/javascript" src="{{ asset('vendor/my-blog/js/jquery.colorbox.js') }}"></script>
-
 
         <!-- Template custom-->
         <script type="text/javascript" src="{{ asset('vendor/my-blog/js/custom.js') }}"></script>

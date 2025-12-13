@@ -24,12 +24,12 @@
                     <ul class="list-dash">
                         <li><a href="#">Nosotros</a></li>
                         <li><a href="{{ route('servicios.mostrar') }}">Servicios</a></li>
-                        <li><a href="#">Proyectos</a></li>
+                        <li><a href="{{ route('eventos.mostrar') }}">Proyectos</a></li>
                         <li><a href="#">Equipo</a></li>
                         <li><a href="#">Preguntas</a></li>
                         <li><a href="#">Blog</a></li>
                         <li><a href="#">Trabaja con Nosotros</a></li>
-                        <li><a href="#">Contácto</a></li>
+                        <li><a href="{{ route('contacto.index') }}">Contácto</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4 col-md-6 footer-widget">
@@ -38,7 +38,7 @@
                                 class="icon icon-map-marker2"></i></span>
                         <div class="ts-contact-content">
                             <h3 class="ts-contact-title">Dirección</h3>
-                            <p>Jirón yavari 368 Breña, Urb. Chacra Colorada, Lima</p>
+                            <p>{{ $profile->direccion ?? '' }}</p>
                         </div>
                         <!-- Contact content end-->
                     </div>
@@ -47,7 +47,7 @@
                                 class="icon icon-envelope"></i></span>
                         <div class="ts-contact-content">
                             <h3 class="ts-contact-title">Correo Electronico</h3>
-                            <p>informes@norez-corp.com</p>
+                            <p>{{ $profile->email ?? '' }}</p>
                         </div>
                         <!-- Contact content end-->
                     </div>
@@ -55,7 +55,7 @@
                                 class="icon icon-phone3"></i></span>
                         <div class="ts-contact-content">
                             <h3 class="ts-contact-title">Teléfono</h3>
-                            <p>+51 981 296 614</p>
+                            <p>{{ $profile->mobile ?? '' }}</p>
                         </div>
                         <!-- Contact content end-->
                     </div>
@@ -71,7 +71,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-12">
                     <div class="copyright-info"><span>Copyright © 2025 - Desarrollo por : <a
-                                href="https://carlos-marquina.com">Carlos Marquina</a></span></div>
+                                href="https://carlos-marquina.com">{{ $profile->web ?? '' }}</a></span></div>
                 </div>
                 <div class="col-lg-6 col-md-12">
                     <div class="footer-social text-right">
