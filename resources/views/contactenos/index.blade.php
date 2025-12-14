@@ -26,15 +26,16 @@
     </div>
     <!-- Banner area end-->
 
-    <section class="main-container contact-area" id="main-container">       
-    
+    <section class="main-container contact-area" id="main-container">
+
         <div class="ts-form form-boxed" id="ts-form">
             <div class="container">
                 <div class="row">
                     <div class="contact-wrapper full-contact">
                         <div class="col-lg-6">
                             <h3 class="column-title">Haz visible tu marca</h3>
-                            <p class="contact-content">Llevamos tu marca a lo más alto, la hacemos brillar y conseguimos nuevos clientes. Contacta con nosotros y pide información personalizada, sin compromiso.</p>
+                            <p class="contact-content">Llevamos tu marca a lo más alto, la hacemos brillar y conseguimos
+                                nuevos clientes. Contacta con nosotros y pide información personalizada, sin compromiso.</p>
                             <div class="contact-info-box contact-box info-box ">
                                 <div class="contact-info">
                                     <div class="ts-contact-info"><span class="ts-contact-icon float-left"><i
@@ -68,43 +69,63 @@
                         <div class="col-lg-6">
                             <h3 class="column-title">Formulario</h3>
                             <div class="contact-submit-box contact-box form-box">
-                                <form action="{{ route('contacto.sendEmail') }}" method="POST">
+
+                                @if (session('success'))
+                                    <div class="alert alert-success">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
+
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul class="mb-0">
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+
+                                <form action="{{ route('send.email.post') }}" method="POST">
                                     @csrf
                                     <div class="error-container"></div>
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <input class="form-control form-name" id="name" name="name"
-                                                    placeholder="Nombre Completo" type="text" value="{{ old('name') }}">
-                                                    @error('name')
-                                                        <span class="text-danger ml-1">{{ $message }}</span>
-                                                    @enderror
+                                                    placeholder="Nombre Completo" type="text"
+                                                    value="{{ old('name') }}">
+                                                @error('name')
+                                                    <span class="text-danger ml-1">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <!-- Col end-->
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <input class="form-control form-website" id="celular" name="celular"
-                                                    placeholder="Número de Celular" type="text" value="{{ old('celular') }}">
-                                                    @error('celular')
-                                                        <span class="text-danger ml-1">{{ $message }}</span>
-                                                    @enderror
+                                                    placeholder="Número de Celular" type="text"
+                                                    value="{{ old('celular') }}">
+                                                @error('celular')
+                                                    <span class="text-danger ml-1">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <input class="form-control form-email" id="email" name="email"
                                                     placeholder="Email" type="text" value="{{ old('email') }}">
-                                                    @error('email')
-                                                        <span class="text-danger ml-1">{{ $message }}</span>
-                                                    @enderror
+                                                @error('email')
+                                                    <span class="text-danger ml-1">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-group">
-                                                <textarea class="form-control form-message required-field" id="message" name="message" placeholder="Comentario" rows="8">{{ old('message') }}</textarea>
+                                                <textarea class="form-control form-message required-field" id="message" name="message" placeholder="Comentario"
+                                                    rows="8">{{ old('message') }}</textarea>
                                                 @error('message')
-                                                        <span class="text-danger ml-1">{{ $message }}</span>
+                                                    <span class="text-danger ml-1">{{ $message }}</span>
                                                 @enderror
                                             </div>
                                         </div>

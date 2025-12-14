@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PHPMailerController;
 
+Route::post('send-mail', [PHPMailerController::class, 'store'])->name('send.email.post');
 
 Route::get(
     '/localization/{language}',

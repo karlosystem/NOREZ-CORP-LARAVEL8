@@ -32,7 +32,7 @@
                     <div class="sidebar ">
                         <div class="widget no-padding no-border">
                             <ul class="service-menu">
-                                <li><a href="service-single.html">{{ $articulo->title }}</a></li>
+                                <li><a href="#">xxx</a></li>
                                 <li><a href="#">Ocean Freight</a></li>
                                 <li><a href="#">Cargo Express</a></li>
                                 <li><a href="#">Warehousing</a></li>
