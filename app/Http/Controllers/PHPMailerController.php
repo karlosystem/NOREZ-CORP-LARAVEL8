@@ -6,6 +6,10 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Contacto;
 
 class PHPMailerController extends Controller
 {
@@ -20,6 +24,22 @@ class PHPMailerController extends Controller
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
+        }
+
+         //grabar
+        DB::beginTransaction();
+        try {
+            Contacto::create([
+                'nombres' => $request->name,
+                'email' => $request->email,
+                'telefono' => $request->celular,
+                'consulta' => $request->message,
+            ]);           
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->back()->withInput($request->all())->withErrors($validator);
+        } finally {
+            DB::commit();
         }
 
         $mail = new PHPMailer(true);
