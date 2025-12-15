@@ -22,6 +22,12 @@ class ContactoController extends Controller
         ]);
     }
 
+    public function lista(){
+        return view('contactenos.listado', [
+             'contactenos_todo' => Contacto::all() 
+        ]);
+    }
+
     public function sendEmail(Request $request){
         $validator = Validator::make(
             $request->all(),

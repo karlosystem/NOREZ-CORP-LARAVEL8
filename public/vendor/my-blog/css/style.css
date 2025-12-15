@@ -6112,10 +6112,21 @@ label {
     box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
 }
 
+.list-group-item {
+    transition: all 0.3s ease;
+}
 
+.list-group-item i {
+    font-size: 18px;
+}
 
+.list-group-item:hover {
+    background-color: #f8f9fa;
+}
 
-
+.list-group-item a:hover {
+    color: #007bff;
+}
 
 
 

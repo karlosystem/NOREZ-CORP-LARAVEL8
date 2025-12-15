@@ -111,7 +111,7 @@
             </a>
 
             {{-- contactenos --}}
-            <a class="nav-link" href="{{ route('contactenos.index') }}">
+            <a class="nav-link" href="{{ route('contactenos.lista') }}">
                 <div class="sb-nav-link-icon">
                     <i class="fas fa-address-card"></i>
                 </div>

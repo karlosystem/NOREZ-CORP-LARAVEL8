@@ -64,6 +64,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['web', 'auth']], functio
     Route::resource('/sliders', \App\Http\Controllers\SliderController::class);
 
     //contactenos
+    Route::get('/contactenos/lista', [\App\Http\Controllers\ContactoController::class, 'lista'])->name('contactenos.lista');
     Route::resource('/contactenos', \App\Http\Controllers\ContactoController::class);
 
     //videos

@@ -1,6 +1,6 @@
 @extends('layouts.blog')
-@section('title',  $articulo->metatitle )
-@section('description', $articulo->metadescription )
+@section('title', $articulo->metatitle)
+@section('description', $articulo->metadescription)
 
 @section('content')
     <div class="banner-area" id="banner-area"
@@ -28,26 +28,36 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
-                    <h4 class="list-column-title">Otros</h4>
+                    <h4 class="list-column-title">Relacionados</h4>
                     <div class="sidebar ">
                         <div class="widget no-padding no-border">
-                            <ul class="service-menu">
-                                <li><a href="#">xxx</a></li>
-                                <li><a href="#">Ocean Freight</a></li>
-                                <li><a href="#">Cargo Express</a></li>
-                                <li><a href="#">Warehousing</a></li>
-                                <li><a href="#">Contract Logistics</a></li>
-                                <li><a href="#">Ground Transport</a></li>
+                            <ul class="list-group list-group-flush">
+                                @forelse($articulosRelacionados as $relacionado)
+                                    <li class="list-group-item d-flex align-items-center">
+                                        <i class="fa fa-newspaper-o text-primary mr-3"></i>
+                                        <a href="{{ route('blog.articulos.details', $relacionado->slug) }}"
+                                            class="text-dark">
+                                            {{ $relacionado->title }}
+                                        </a>
+                                    </li>
+                                @empty
+                                    <li class="list-group-item">No hay artículos relacionados</li>
+                                @endforelse
                             </ul>
+
+
                         </div>
                         <div class="widget no-padding testimonial-static">
-                            <div class="quote-item quote-classic"><span class="quote-text faq-quote-text">The Forexnic loan
-                                    has been the most attractive loan products on the market, helping numerous</span>
+                           <div class="quote-item quote-classic"><span class="quote-text faq-quote-text">
+                                    Desde el 2005, fabricamos anuncios luminosos y publicidad exterior/interior que atrae
+                                    clientes y hace crecer tu marca.</span>
                                 <div class="quote-item-footer quote-footer-classic">
-                                    <img class="testimonial-thumb" src="{{ asset('vendor/my-blog/images/clients/testimonial1.png') }}" alt="testimonial">
+                                    <img class="testimonial-thumb"
+                                        src="{{ asset('vendor/my-blog/images/clients/testimonial1.png') }}"
+                                        alt="testimonial">
                                     <div class="quote-item-info">
-                                        <p class="quote-author">Jhon Cameron</p><span class="quote-subtext">Manager
-                                            Walton</span>
+                                        <p class="quote-author">Edgar Merino</p>
+                                        <span class="quote-subtext">Gerente General</span>
                                     </div>
                                 </div>
                             </div>
@@ -69,7 +79,7 @@
                             <p>Serenity Wonderful has taken possession of my entire soul, like these sweet mornings of
                                 spring which I enjoy with my whole heart.</p>
                         </div>
-                        <h3 class="column-title">Delivery on your doorstep</h3>
+                        <h3 class="column-title">Beneficios de contrarar con Norez Corp</h3>
 
                         <div class="service-content">
                             <div class="service-blocknumber">
@@ -78,10 +88,9 @@
                                 </div>
                             </div>
                             <div class="service-content-area">
-                                <h3>On-board courier</h3>
-                                <p class="service-text">Serenity Wonderful has taken possession of my entire soul, like
-                                    these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel
-                                    the charm of existence in this spot.</p>
+                                <h3>Imagen positiva de tu marca</h3>
+                                <p class="service-text">Proyecta profesionalismo y confianza. Tu negocio “se ve bien” y se
+                                    siente bien.</p>
                             </div>
                         </div>
                         <div class="service-content">
@@ -91,10 +100,9 @@
                                 </div>
                             </div>
                             <div class="service-content-area">
-                                <h3>Full loads shipments</h3>
-                                <p class="service-text">Serenity Wonderful has taken possession of my entire soul, like
-                                    these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel
-                                    the charm of existence in this spot.</p>
+                                <h3>Atrae miradas al instante</h3>
+                                <p class="service-text">La gente va con prisa. Un buen anuncio te pone en su radar en
+                                    segundos.</p>
                             </div>
                         </div>
                         <div class="service-content">
@@ -104,10 +112,9 @@
                                 </div>
                             </div>
                             <div class="service-content-area">
-                                <h3>Domestic air services</h3>
-                                <p class="service-text">Serenity Wonderful has taken possession of my entire soul, like
-                                    these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel
-                                    the charm of existence in this spot.</p>
+                                <h3>Tu negocio se identifica fácil</h3>
+                                <p class="service-text">Haz que te encuentren sin dar vueltas. Señalización clara es igual a
+                                    más visitas.</p>
                             </div>
                         </div>
                     </div>
@@ -115,14 +122,15 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-8 align-self-center">
-                                    <h3 class="call-to-action-title service-call-to-action">Delivery & return solutions
-                                        worldwide</h3>
+                                    <h3 class="call-to-action-title service-call-to-action">
+                                        Soluciones de Publicidad en el Perú
+                                    </h3>
                                     <p>
-                                        We would love to hear from you, tell us little bit about your project
+                                        Nos encantaría saber de ti, cuéntanos un poco sobre tu proyecto
                                     </p>
                                 </div>
                                 <div class="col-lg-4 text-right">
-                                    <a class="btn btn-box" href="">Call Now</a>
+                                    <a class="btn btn-box" href="{{ route('contacto.index') }}">Contáctenos</a>
                                 </div>
                             </div>
                         </div>
