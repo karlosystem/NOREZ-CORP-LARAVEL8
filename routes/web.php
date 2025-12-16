@@ -40,6 +40,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['web', 'auth']], functio
     //album de fotos
     Route::resource('/albums', \App\Http\Controllers\AlbumController::class);
 
+    //contenidos
+    Route::resource('/contenidos', \App\Http\Controllers\ContenidoController::class);
+
     //tags
     Route::get('/tags/select', [\App\Http\Controllers\TagController::class, 'select'])->name('tags.select');
     Route::resource('/tags', \App\Http\Controllers\TagController::class);

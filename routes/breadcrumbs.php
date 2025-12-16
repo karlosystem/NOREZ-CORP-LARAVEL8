@@ -25,6 +25,23 @@ Breadcrumbs::for('contactenos', function ($trail) {
   $trail->push('Contactenos', route('contactenos.index'));
 });
 
+//Contenidos
+Breadcrumbs::for('contenidos', function ($trail) {
+  $trail->parent('dashboard');
+  $trail->push('Contenidos', route('contenidos.index'));
+});
+
+Breadcrumbs::for('add_contenido', function ($trail) {
+  $trail->parent('contenidos');
+  $trail->push('Agregar', route('contenidos.create'));
+});
+
+Breadcrumbs::for('edit_contenido', function ($trail, $contenido) {
+  $trail->parent('contenidos');
+  $trail->push('Edit', route('contenidos.edit', ['contenido' => $contenido]));
+  $trail->push($contenido->title, route('contenidos.edit', ['contenido' => $contenido]));
+});
+
 
 //Noticias
 Breadcrumbs::for('noticias', function ($trail) {

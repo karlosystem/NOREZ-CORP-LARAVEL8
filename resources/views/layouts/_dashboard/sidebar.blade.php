@@ -26,6 +26,15 @@
                 Sliders
             </a>
 
+             {{-- Contenidos --}}
+            <a class="nav-link {{ set_active(['contenidos.index', 'contenidos.create', 'contenidos.edit', 'contenidos.show']) }}"
+                href="{{ route('contenidos.index') }}">
+                <div class="sb-nav-link-icon">
+                    <i class="far fa-image"></i>
+                </div>
+                Contenidos
+            </a>
+
             {{-- artistas --}}
             <a class="nav-link {{ set_active(['artistas.index', 'artistas.create', 'artistas.show', 'artistas.edit']) }}"
                 href="{{ route('artistas.index') }}">
