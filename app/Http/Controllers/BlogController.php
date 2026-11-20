@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Servicios;
 use App\Models\Articulos;
+use App\Models\Contenidos;
 use App\Models\Evento;
 use App\Models\Proyectos;
 use App\Models\Slider;
+use App\Models\Video;
 
 class BlogController extends Controller
 {
@@ -23,6 +25,7 @@ class BlogController extends Controller
                 ->get(),
             'sliders' => Slider::where('status', 'publish')
                 ->get(),
+            'clientes' => Video::where('status', 'publish')->get()
         ]);
     }
 
@@ -101,6 +104,15 @@ class BlogController extends Controller
                 ->get()
         ]);
     } */
+
+    public function showContenidoByPagina($slug){
+        $pagina = Contenidos::where('slug', $slug)
+            ->where('status', 'publish')
+            ->first();
+         return view('contenidos.pagina', [
+            'pagina' => $pagina
+         ]);
+    }
 
     public function showProyectoDetail($slug)
     {

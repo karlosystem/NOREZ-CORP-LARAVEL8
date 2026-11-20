@@ -66,10 +66,10 @@ Breadcrumbs::for('detail_noticias', function ($trail, $noticia) {
   $trail->push($noticia->name, route('noticias.show', ['noticia' => $noticia]));
 });
 
-//Videos Youtube
-Breadcrumbs::for('videos', function ($trail) {
+//Clientes
+Breadcrumbs::for('clientes', function ($trail) {
   $trail->parent('dashboard');
-  $trail->push('Videos', route('videos.index'));
+  $trail->push('Clientes', route('videos.index'));
 });
 
 Breadcrumbs::for('edit_videos', function ($trail, $video) {

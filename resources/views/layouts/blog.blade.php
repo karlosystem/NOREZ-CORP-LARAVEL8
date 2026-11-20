@@ -74,6 +74,8 @@
         <i class="fa fa-whatsapp my-float"></i>
     </a>
 
+	<link rel="canonical" href="{{ url()->current() }}">
+
 </head>
 <body>
     <div class="body-inner">

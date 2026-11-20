@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Video extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'slug', 'cover_image', 'link', 'status', 'user_id'];
+    protected $fillable = ['name', 'slug', 'cover_image', 'link', 'status', 'user_id', 'cliente', 'foto', 'cargo', 'testimonio'];
 
     public function scopeSearch($query, $title)
     {

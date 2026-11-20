@@ -1,20 +1,42 @@
-*.sql
-*.html
-*.bak
-*.xml
-*.txt
-/node_modules
-/public/hot
-/public/storage
-/storage/*.key
+# Laravel
 /vendor
+/node_modules
+
+# Environment
 .env
 .env.backup
-.phpunit.result.cache
-docker-compose.override.yml
-Homestead.json
-Homestead.yaml
-npm-debug.log
-yarn-error.log
-/.idea
-/.vscode
+.env.production
+
+# Laravel runtime
+/storage/*.key
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/logs/*
+
+# IDE
+.idea
+.vscode
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Archivos de ayuda que no se publicarán
+/ARCHIVOS DE AYUDA/
+
+# Archivos auxiliares y documentación privada
+/ARCHIVOS DE AYUDA/
+/ARCHIVOS DE AYUDA
+
+# Archivos personales y respaldos
+*.zip
+*.xlsx
+*.bak
+error_log
+
+# Archivos de acceso y documentación interna
+*.txt
+
+# Archivos SQL de respaldo
+*.sql

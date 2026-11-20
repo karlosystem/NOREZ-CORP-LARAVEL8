@@ -30,33 +30,37 @@
                 <div class="col-lg-4">
                     <h4 class="list-column-title">Relacionados</h4>
                     <div class="sidebar ">
-                        <div class="widget no-padding no-border">
-                            <ul class="list-group list-group-flush">
-                                @forelse($articulosRelacionados as $relacionado)
-                                    <li class="list-group-item d-flex align-items-center">
-                                        <i class="fa fa-newspaper-o text-primary mr-3"></i>
-                                        <a href="{{ route('blog.articulos.details', $relacionado->slug) }}"
-                                            class="text-dark">
-                                            {{ $relacionado->title }}
-                                        </a>
-                                    </li>
-                                @empty
-                                    <li class="list-group-item">No hay artículos relacionados</li>
-                                @endforelse
-                            </ul>
+                       
+<div class="widget no-padding no-border">
+    <ul class="list-group list-group-flush">
+        @forelse($articulosRelacionados as $relacionado)
+            <li class="list-group-item d-flex align-items-center">
+                <img src="{{ asset($relacionado->thumbnail) }}" 
+                     alt="{{ $relacionado->title }}" 
+                     class="rounded-circle mr-3" 
+                     style="width: 45px; height: 45px; object-fit: cover; border: 1px solid #ddd;">
+                
+                <a href="{{ route('blog.articulos.details', $relacionado->slug) }}"
+                   class="text-dark font-weight-bold" style="font-size: 0.9rem; line-height: 1.2;">
+                    {{ $relacionado->title }}
+                </a>
+            </li>
+        @empty
+            <li class="list-group-item">No hay artículos relacionados</li>
+        @endforelse
+    </ul>
+</div>
 
-
-                        </div>
                         <div class="widget no-padding testimonial-static">
                            <div class="quote-item quote-classic"><span class="quote-text faq-quote-text">
                                     Desde el 2005, fabricamos anuncios luminosos y publicidad exterior/interior que atrae
                                     clientes y hace crecer tu marca.</span>
                                 <div class="quote-item-footer quote-footer-classic">
                                     <img class="testimonial-thumb"
-                                        src="{{ asset('vendor/my-blog/images/clients/testimonial1.png') }}"
+                                        src="{{ asset('vendor/my-blog/images/clients/edgard-merino.png') }}"
                                         alt="testimonial">
                                     <div class="quote-item-info">
-                                        <p class="quote-author">Edgar Merino</p>
+                                        <p class="quote-author">Edgard Merino</p>
                                         <span class="quote-subtext">Gerente General</span>
                                     </div>
                                 </div>
@@ -73,12 +77,24 @@
                     <div class="service-content">
                         <h2>{{ $articulo->title }}</h2>
 
-                        <div class="text-block mrb-40">
-                            {{ $articulo->resumen }}
-
-                            <p>Serenity Wonderful has taken possession of my entire soul, like these sweet mornings of
-                                spring which I enjoy with my whole heart.</p>
+						 <div class="text-block mrb-40">
+                            {!! $articulo->presentacion !!}
                         </div>
+						
+						<hr>
+
+                        <div class="text-block mrb-40">
+                            {!! $articulo->resumen !!}
+                        </div>
+
+						<hr>
+
+                         <div class="text-block mrb-40">
+                            {!! $articulo->contenido !!}
+                        </div>
+
+						<hr>
+
                         <h3 class="column-title">Beneficios de contrarar con Norez Corp</h3>
 
                         <div class="service-content">

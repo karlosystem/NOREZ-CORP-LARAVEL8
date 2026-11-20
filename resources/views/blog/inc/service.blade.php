@@ -5,7 +5,7 @@
                     <div class="col-md-12">
                         <h2 class="section-title"><span>Servicio a nivel nacional de alta especialidad con experiencia de 25
                                 años.</span>
-                            ¿ Por qué Nodez Corp S.A.C. ?</h2>
+                            ¿ Por qué Norez Corp S.A.C. ?</h2>
                     </div>
                 </div>
                 <!-- Title row end-->

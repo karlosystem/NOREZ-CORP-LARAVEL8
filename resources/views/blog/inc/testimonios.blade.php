@@ -75,60 +75,28 @@
                 <div class="col-lg-6 testimonial-client">
                     <h2 class="column-title "><span>Lo que dijerón</span> Testimonio de Clientes</h2>
                     <div class="owl-carousel owl-theme testimonial-slide owl-dark" id="testimonial-slide">
+
+                        @forelse ($clientes as $cliente)
                         <div class="item">
-                            <div class="quote-item quote-square"><span class="quote-text"> Midst brought winged midst
-                                    beast years, be very was. Brought that called creeping was shall every also divide
-                                    created had. Forth without image gathered morning that gathered our beginning, midst.
-                                    Divided yielding moveth kind grass.</span>
+                            <div class="quote-item quote-square">
+                                <span class="quote-text">
+                                    {{ $cliente->testimonio }}
+                                </span>
                                 <div class="quote-item-footer">
                                     <img class="testimonial-thumb"
-                                        src="{{ asset('vendor/my-blog/images/clients/testimonial1.png') }}"
+                                        src="{{ $cliente->foto }}"
                                         alt="testimonial">
                                     <div class="quote-item-info">
-                                        <p class="quote-author">Gabriel Denis</p><span class="quote-subtext">Chairman,
-                                            OKT</span>
+                                        <p class="quote-author">{{ $cliente->cliente }}</p>
+                                        <span class="quote-subtext">{{ $cliente->cargo }}</span>
                                     </div>
                                 </div>
                             </div>
                             <!-- Quote item end-->
                         </div>
-                        <!-- Item 1 end-->
-                        <div class="item">
-                            <div class="quote-item quote-square"><span class="quote-text">Lorem ipsum dolor sit amet,
-                                    consectetur adipisicing elit, sed do eiusmod tempor inci done idunt ut labore et dolore
-                                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitoa tion ullamco laboris nisi
-                                    aliquip consequat.</span>
-                                <div class="quote-item-footer">
-                                    <img class="testimonial-thumb"
-                                        src="{{ asset('vendor/my-blog/images/clients/testimonial2.png') }}"
-                                        alt="testimonial">
-                                    <div class="quote-item-info">
-                                        <h3 class="quote-author">Weldon Cash</h3><span class="quote-subtext">CFO, First
-                                            Choice</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Quote item end-->
-                        </div>
-                        <!-- Item 2 end-->
-                        <div class="item">
-                            <div class="quote-item quote-square"><span class="quote-text">Lorem ipsum dolor sit amet,
-                                    consectetur adipisicing elit, sed do eiusmod tempor inci done idunt ut labore et dolore
-                                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitoa tion ullamco laboris nisi
-                                    ut commodo consequat.</span>
-                                <div class="quote-item-footer">
-                                    <img class="testimonial-thumb"
-                                        src="{{ asset('vendor/my-blog/images/clients/testimonial3.png') }}"
-                                        alt="testimonial">
-                                    <div class="quote-item-info">
-                                        <h3 class="quote-author">Minter Puchan</h3><span class="quote-subtext">Director,
-                                            AKT</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Quote item end-->
-                        </div>
-                        <!-- Item 3 end-->
+                        @empty
+                        @endforelse 
+
                     </div>
                     <!-- Testimonial carousel end-->
                 </div>

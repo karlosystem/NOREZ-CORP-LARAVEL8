@@ -5,7 +5,7 @@
 @endsection
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('videos') }}
+    {{ Breadcrumbs::render('clientes') }}
 @endsection
 
 @section('content')
@@ -13,18 +13,18 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="row d-flex align-items-stretch">
-                        <div class="col-md-8">
-                            <form action="{{ route('videos.store') }}" method="POST">
-                                @csrf
+                    <form action="{{ route('videos.store') }}" method="POST">
+                        @csrf
+                        <div class="row d-flex align-items-stretch">
+                            <div class="col-md-6">
                                 <!-- title -->
                                 <div class="form-group">
                                     <label for="input_video_name" class="font-weight-bold">
-                                        Titulo
+                                        Razon Social
                                     </label>
                                     <input id="input_video_name" value="{{ old('name') }}" name="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror"
-                                        placeholder="Titulo de Video" />
+                                        placeholder="Razon Social" />
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -62,7 +62,7 @@
                                 <!-- thumbnail -->
                                 <div class="form-group">
                                     <label for="input_video_thumbnail" class="font-weight-bold">
-                                        Thumbnail
+                                        Logotipo de la empresa
                                     </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -90,8 +90,8 @@
                                     </label>
                                     <select id="select_post_status" name="status"
                                         class="custom-select @error('status') is-invalid @enderror">
-                                        <option value="draft">Draft</option>
                                         <option value="publish">Publish</option>
+                                        <option value="draft">Draft</option>                                        
                                     </select>
                                     @error('status')
                                         <span class="invalid-feedback" role="alert">
@@ -99,15 +99,84 @@
                                         </span>
                                     @enderror
                                 </div>
+                            </div>
+                            <div class="col-md-6">
 
-                                <div class="float-right">
-                                    <a class="btn btn-info px-4" href="{{ route('videos.index') }}">Back</a>
-                                    <button type="submit" class="btn btn-primary px-4">Save</button>
+                                <!-- nombre -->
+                                <div class="form-group">
+                                    <label for="input_nombre_cliente" class="font-weight-bold">
+                                        Nombre de Cliente
+                                    </label>
+                                    <input id="input_nombre_cliente" value="{{ old('cliente') }}" name="cliente" type="text"
+                                        class="form-control @error('cliente') is-invalid @enderror"
+                                        placeholder="Nombre de Cliente" />
+                                    @error('cliente')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
 
-                            </form>
+                                <!-- cargo -->
+                                <div class="form-group">
+                                    <label for="input_nombre_cliente" class="font-weight-bold">
+                                        Cargo de Cliente
+                                    </label>
+                                    <input id="input_cargo_cliente" value="{{ old('cargo') }}" name="cargo" type="text"
+                                        class="form-control @error('cargo') is-invalid @enderror"
+                                        placeholder="Cargo de Cliente" />
+                                    @error('cargo')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                <!-- cargo -->
+                                <div class="form-group">
+                                    <label for="input_testimonio_cliente" class="font-weight-bold">
+                                        Testimonio
+                                    </label>                         
+                                    <textarea class="form-control @error('cargo') is-invalid @enderror" placeholder="Testimonio" name="testimonio" id="testimonio" cols="30" rows="5">{{ old('testimonio') }}</textarea>
+                                    @error('testimonio')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                <!-- thumbnail -->
+                                <div class="form-group">
+                                    <label for="input_foto_cliente" class="font-weight-bold">
+                                        Foto de Cliente
+                                    </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <button id="button_foto_cliente" data-input="button_foto_cliente"
+                                                class="btn btn-primary" type="button">
+                                                Buscar Foto
+                                            </button>
+                                        </div>
+                                        <input id="input_foto_cliente" name="foto"
+                                            value="{{ old('foto') }}" type="text"
+                                            class="form-control @error('foto') is-invalid @enderror"
+                                            placeholder="Seleccionar Foto" readonly />
+                                        @error('foto')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                            </div>
+
                         </div>
-                    </div>
+                        <div class="float-right">
+                            <a class="btn btn-info px-4" href="{{ route('videos.index') }}">Back</a>
+                            <button type="submit" class="btn btn-primary px-4">Save</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -137,6 +206,7 @@
 
             //file manager
             $('#button_video_thumbnail').filemanager('image')
+            $('#button_foto_cliente').filemanager('image')
 
         });
     </script>

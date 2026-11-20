@@ -25,6 +25,11 @@ Route::get('/proyecto/{slug}', [App\Http\Controllers\BlogController::class, 'sho
 Route::get('/contacto', [App\Http\Controllers\ContactoController::class, 'index'])->name('contacto.index');
 Route::post('/contacto', [App\Http\Controllers\ContactoController::class, 'sendEmail'])->name('contacto.sendEmail');
 
+// Páginas
+Route::get('/paginas/{slug}', [App\Http\Controllers\BlogController::class, 'showContenidoByPagina'])->name('blog.paginas.contenidos');
+
+// Formas de Pago
+Route::get('/formas-pago', [App\Http\Controllers\FormaspagoController::class, 'index'])->name('formas.index');
 
 Auth::routes([
     'register' => false

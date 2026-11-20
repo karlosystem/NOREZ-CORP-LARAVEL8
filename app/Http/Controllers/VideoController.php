@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class VideoController extends Controller
 {
-    private $perPage = 3;
+    private $perPage = 20;
     /**
      * Display a listing of the resource.
      *
@@ -73,9 +73,13 @@ class VideoController extends Controller
                 'cover_image' => parse_url($request->cover_image)['path'],
                 'link' => $request->link,
                 'status' => $request->status,
+                'cliente' => $request->cliente,
+                'cargo' => $request->cargo,
+                'testimonio' => $request->testimonio,
+                'foto' => parse_url($request->foto)['path'],
                 'user_id' => Auth::user()->id,
             ]);
-            Alert::success('Mantenimiento de Videos', 'Grabado con exito');
+            Alert::success('Mantenimiento de Clientes', 'Grabado con exito');
             return redirect()->route('videos.index');
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -145,9 +149,13 @@ class VideoController extends Controller
                 'cover_image' => parse_url($request->cover_image)['path'],
                 'link' => $request->link,
                 'status' => $request->status,
+                'cliente' => $request->cliente,
+                'cargo' => $request->cargo,
+                'testimonio' => $request->testimonio,
+                'foto' => parse_url($request->foto)['path'],
                 'user_id' => Auth::user()->id,
             ]);
-            Alert::success('Mantenimiento de Videos', 'Editado con exito');
+            Alert::success('Mantenimiento de Clientes', 'Editado con exito');
             return redirect()->route('videos.index');
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -170,7 +178,7 @@ class VideoController extends Controller
         //eliminar
         try {
             $video->delete();
-            Alert::success('Mantenimiento de Videos', 'Eliminado con exito');
+            Alert::success('Mantenimiento de Clientes', 'Eliminado con exito');
             return redirect()->route('videos.index');
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -198,6 +206,10 @@ class VideoController extends Controller
             'description' => 'description',
             'content' => 'content',
             'status' => 'status',
+            'cliente' => 'cliente',
+            'cargo' => 'cargo',
+            'testimonio' => 'testimonio',
+            'foto' => 'image',            
         ];
     }
 }

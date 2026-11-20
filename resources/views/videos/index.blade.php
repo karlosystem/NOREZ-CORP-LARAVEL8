@@ -1,11 +1,11 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    Videos Youtube
+    Clientes y sus Testimonios
 @endsection
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('videos') }}
+    {{ Breadcrumbs::render('clientes') }}
 @endsection
 
 @section('content')
@@ -34,7 +34,7 @@
                                 <div class="col">
                                     <div class="input-group mx-1">
                                         <input name="keyword" value="{{ request()->get('keyword') }}" type="search"
-                                            class="form-control" placeholder="Search for Videos">
+                                            class="form-control" placeholder="Search for Clientes">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="submit">
                                                 <i class="fas fa-search"></i>
@@ -57,10 +57,13 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Image</th>
+                                <th scope="col">Razon Social</th>
+                                <th scope="col">Logo</th>
                                 <th scope="col">Date</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Cliente</th>
+                                <th scope="col">Cargo</th>
+                                <th scope="col">Foto</th>
                                 <th scope="col">Options</th>
                             </tr>
                         </thead>
@@ -68,28 +71,32 @@
                             @forelse ($videos as $video)
                                 <tr>
                                     <td scope="row">{{ $video->id }}</td>
-                                    <td>{{ $video->name }}</td>
+                                    <td class="text-left">{{ $video->name }}</td>
                                     <td>
                                         @if (file_exists(public_path($video->cover_image)))
                                             <img class="img-fluid" src="{{ asset($video->cover_image) }}"
-                                                style="width: auto; height: 195px;">
+                                                style="width: auto; height: 95px;">
                                         @endif
                                     </td>
                                     <td>{{ $video->created_at }}</td>
                                     <td>{{ $video->status }}</td>
+                                    <td>{{ $video->cliente }}</td>
+                                    <td>{{ $video->cargo }}</td>
                                     <td>
-                                        <div>
-                                            <!-- detail -->
-                                            <a href="#" class="btn btn-sm btn-primary" role="button">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
+                                        @if (file_exists(public_path($video->foto)))
+                                            <img class="img-fluid" src="{{ asset($video->foto) }}"
+                                                style="width: auto; height: 95px;">
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <div>                                         
                                             <!-- edit -->
                                             <a href="{{ route('videos.edit', ['video' => $video]) }}"
                                                 class="btn btn-sm btn-info" role="button">
                                                 <i class="fas fa-edit"></i>
                                             </a>
                                             <!-- delete -->
-                                            <form class="d-inline" role="alert"
+                                            <form class="d-inline formulario-eliminar" role="alert"
                                                 alert-text="{{ trans('artistas.alert.delete.message.confirm', ['name' => $video->name]) }}"
                                                 action="{{ route('videos.destroy', ['video' => $video]) }}" method="POST">
                                                 @csrf

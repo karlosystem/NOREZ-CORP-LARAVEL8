@@ -7,7 +7,6 @@
                 </div>
                 {{ trans('dashboard.link.dashboard') }}
             </a>
-            {{-- <div class="sb-sidenav-menu-heading">{{ trans('dashboard.menu.master') }}</div> --}}
 
             {{-- Configuracion --}}
             <a class="nav-link" href="{{ route('profiles.index') }}">
@@ -35,23 +34,6 @@
                 Contenidos
             </a>
 
-            {{-- artistas --}}
-            <a class="nav-link {{ set_active(['artistas.index', 'artistas.create', 'artistas.show', 'artistas.edit']) }}"
-                href="{{ route('artistas.index') }}">
-                <div class="sb-nav-link-icon">
-                    <i class="far fa-newspaper"></i>
-                </div>
-                Artistas
-            </a>
-
-            {{-- categorias --}}
-            <a class="nav-link {{ set_active(['categories.index', 'categories.create', 'categories.edit', 'categories.show']) }}"
-                href="{{ route('categories.index') }}">
-                <div class="sb-nav-link-icon">
-                    <i class="fas fa-bookmark"></i>
-                </div>
-               Clientes
-            </a>
 
             {{-- album de fotos --}}
 
@@ -60,7 +42,7 @@
                 <div class="sb-nav-link-icon">
                     <i class="fas fa-camera-retro"></i>
                 </div>
-                Gallery Pictures
+                Fotos de Proyectos
             </a>
 
             {{-- videos youtube --}}
@@ -69,7 +51,7 @@
                 <div class="sb-nav-link-icon">
                     <i class="fab fa-youtube"></i>
                 </div>
-                Videos YouTube
+                Clientes y Testimonios
             </a>
 
             {{-- Noticias --}}
@@ -101,7 +83,7 @@
 
             
             {{-- Articulos --}}
-            <a class="nav-link {{ set_active(['articulos.index', 'articulos.create', 'articulos.edit', 'articulos.show']) }}"
+           <a class="nav-link {{ set_active(['articulos.index', 'articulos.create', 'articulos.edit', 'articulos.show']) }}"
                 href="{{ route('articulos.index') }}">
                 <div class="sb-nav-link-icon">
                     <i class="fas fa-chalkboard-teacher"></i>

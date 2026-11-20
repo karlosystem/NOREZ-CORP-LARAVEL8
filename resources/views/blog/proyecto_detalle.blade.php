@@ -49,11 +49,11 @@
                                     Desde el 2005, fabricamos anuncios luminosos y publicidad exterior/interior que atrae
                                     clientes y hace crecer tu marca.</span>
                                 <div class="quote-item-footer quote-footer-classic">
-                                    <img class="testimonial-thumb"
-                                        src="{{ asset('vendor/my-blog/images/clients/testimonial1.png') }}"
+                                   <img class="testimonial-thumb"
+                                        src="{{ asset('vendor/my-blog/images/clients/edgard-merino.png') }}"
                                         alt="testimonial">
                                     <div class="quote-item-info">
-                                        <p class="quote-author">Edgar Merino</p>
+                                        <p class="quote-author">Edgard Merino</p>
                                         <span class="quote-subtext">Gerente General</span>
                                     </div>
                                 </div>

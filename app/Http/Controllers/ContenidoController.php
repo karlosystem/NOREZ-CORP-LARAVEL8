@@ -154,14 +154,14 @@ class ContenidoController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'title' => 'required|string|max:60',                
+                'title' => 'required|string|max:300',                
                 'slug' => 'required|string|unique:contenidos,slug,' . $contenido->id,
                 'thumbnail' => 'required',
                 'description' => 'required',
                 'content' => 'required',
                 'status' => 'required',
-                'metatitle' => 'required|string|max:60',
-                'metadescription' => 'required|string|max:160',
+                'metatitle' => 'required|string|max:70',
+                'metadescription' => 'required|string|max:169',
             ],
             [],
             $this->attributes()

@@ -14,26 +14,50 @@ class ArticulosController extends Controller
 {
     private $perPage = 10;
 
-    public function index(Request $request)
-    {
-        $statusSelected = in_array($request->get('status'), ['publish', 'draft']) ? $request->get('status') : 'publish';
-        $destacadoSelected = in_array($request->get('destacado'), ['si', 'no']) ? $request->get('destacado') : 'si';
-        $portadaSelected = in_array($request->get('portada'), ['si', 'no']) ? $request->get('portada') : 'si';
+public function index(Request $request)
+{
+    $statusSelected = in_array($request->get('status'), ['publish', 'draft']) ? $request->get('status') : 'publish';
+    $destacadoSelected = in_array($request->get('destacado'), ['si', 'no']) ? $request->get('destacado') : 'si';
+    $portadaSelected = in_array($request->get('portada'), ['si', 'no']) ? $request->get('portada') : 'si';
 
-        $articulos = $statusSelected == "publish" ? Articulos::publish() : Articulos::draft();
-        if ($request->get('keyword')) {
-            $articulos->search($request->get('keyword'));
-        }
-        return view('articulos.index', [
-            'articulos' => $articulos->paginate($this->perPage)->withQueryString(),
-            'statuses' => $this->statuses(),
-            'destacados' => $this->destacados(),
-            'portadas' => $this->portadas(),
-            'statusSelected' => $statusSelected,
-            'destacadoSelected' => $destacadoSelected,
-            'portadaSelected' => $portadaSelected,
-        ]);
+    // 1. Usamos Join para poder ordenar por una columna de la tabla servicios
+    // Seleccionamos articulos.* para no sobreescribir los IDs
+    $query = Articulos::select('articulos.*')
+        ->join('servicios', 'articulos.fk_servicio', '=', 'servicios.id');
+
+    // 2. Aplicamos filtros de la tabla servicios (Publicados y Destacados)
+    $query->where('servicios.status', 'publish')
+          ->where('servicios.destacado', 'si');
+
+    // 3. Filtro de status del Artículo (usando el alias de tabla para evitar ambigüedad)
+    if ($statusSelected == "publish") {
+        $query->where('articulos.status', 'publish');
+    } else {
+        $query->where('articulos.status', 'draft');
     }
+
+    // 4. ORDENAR POR SERVICIO (Esta es la clave)
+    // Puedes usar 'servicios.title' para orden alfabético o 'servicios.orden'
+    $query->orderBy('servicios.title', 'asc'); 
+
+    // 5. Búsqueda por palabra clave
+    if ($request->get('keyword')) {
+        $query->where('articulos.title', 'LIKE', "%{$request->get('keyword')}%");
+    }
+
+    // Cargamos la relación para la vista
+    $articulos = $query->with('servicio')->paginate($this->perPage)->withQueryString();
+
+    return view('articulos.index', [
+        'articulos' => $articulos,
+        'statuses' => $this->statuses(),
+        'destacados' => $this->destacados(),
+        'portadas' => $this->portadas(),
+        'statusSelected' => $statusSelected,
+        'destacadoSelected' => $destacadoSelected,
+        'portadaSelected' => $portadaSelected,
+    ]);
+}
 
     private function statuses()
     {
@@ -68,15 +92,15 @@ class ArticulosController extends Controller
         ]);
     }
 
-     
+
     public function store(Request $request)
     {
-          $validator = Validator::make(
+        $validator = Validator::make(
             $request->all(),
             [
                 'title' => 'required|string|max:60',
                 'slug' => 'required|string|unique:articulos,slug',
-               // 'articulo_categoria' => 'required',
+                // 'articulo_categoria' => 'required',
                 'thumbnail' => 'required',
                 'resumen' => 'required|string|max:60',
                 'presentacion' => 'required',
@@ -90,7 +114,7 @@ class ArticulosController extends Controller
             [],
             $this->attributes()
         );
-         if ($validator->fails()) {
+        if ($validator->fails()) {
             return redirect()->back()->withInput($request->all())->withErrors($validator);
         }
         DB::beginTransaction();
@@ -115,7 +139,7 @@ class ArticulosController extends Controller
             return redirect()->route('articulos.index');
         } catch (\Throwable $th) {
             DB::rollBack();
-             if ($request->has('articulo_categoria')) {
+            if ($request->has('articulo_categoria')) {
                 $request['articulo_categoria'] = Articulos::select('id', 'title')->find($request->articulo_categoria);
             }
             Alert::error('Error Title', 'Error' . $th->getMessage());
@@ -123,7 +147,6 @@ class ArticulosController extends Controller
         } finally {
             DB::commit();
         }
-
     }
 
     private function attributes()
@@ -170,7 +193,7 @@ class ArticulosController extends Controller
             'destacados' => $this->destacados(),
             'portadas' => $this->portadas(),
             'rowSelected' => $articulo->servicio,  // 👈 OBJETO
-            
+
         ]);
     }
 
@@ -203,7 +226,7 @@ class ArticulosController extends Controller
 
         DB::beginTransaction();
 
-         //editar
+        //editar
         try {
             $articulo->update([
                 'title' => $request->title,
@@ -227,14 +250,10 @@ class ArticulosController extends Controller
             return redirect()->route('articulos.index');
         } catch (\Throwable $th) {
             DB::rollBack();
-            Alert::error('Error Title', 'Error' . $th->getMessage());           
+            Alert::error('Error Title', 'Error' . $th->getMessage());
             return redirect()->back()->withInput($request->all());
         } finally {
             DB::commit();
         }
-
-
     }
-
-
 }

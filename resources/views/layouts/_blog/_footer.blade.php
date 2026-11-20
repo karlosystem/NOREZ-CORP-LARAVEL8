@@ -22,16 +22,20 @@
                 <div class="col-lg-4 col-md-6 footer-widget">
                     <h3 class="widget-title">Enlaces Rápidos</h3>
                     <ul class="list-dash">
-                        <li><a href="#">Nosotros</a></li>
+                        <li><a href="{{ route('blog.paginas.contenidos', ['slug' => 'nosotros']) }}">Nosotros</a></li>
                         <li><a href="{{ route('servicios.mostrar') }}">Servicios</a></li>
                         <li><a href="{{ route('eventos.mostrar') }}">Proyectos</a></li>
-                        <li><a href="#">Equipo</a></li>
-                        <li><a href="#">Preguntas</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Trabaja con Nosotros</a></li>
+                        <li><a href="{{ route('album.mostrar') }}">Fotos</a></li>
+                        <li><a href="{{ route('clientes.index') }}">Clientes</a></li>
+                        <li><a target="_new" href="https://norez-corp.com/blog/">Blog</a></li>
+                        <li><a href="{{ route('blog.paginas.contenidos', ['slug' => 'tecnologia-de-punta']) }}">Tecnología de Punta</a></li>
                         <li><a href="{{ route('contacto.index') }}">Contácto</a></li>
                     </ul>
-                </div>
+                    <h2 class="widget-tarjetas">Aceptamos Tarjetas de Crédito y Débito</h2>
+                    <div class="footer-tarjetas">
+                        <img class="img-fluid" src="{{ asset('vendor/my-blog/images/banner-tarjetas.png') }}">
+                    </div>
+                  </div>
                 <div class="col-lg-4 col-md-6 footer-widget">
                     <h3 class="widget-title">Dirección y Teléfonos</h3>
                     <div class="ts-contact-info"><span class="ts-contact-icon float-left"><i

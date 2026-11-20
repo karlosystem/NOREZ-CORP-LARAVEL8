@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Clientes;
+use App\Models\Video;
 use App\Models\Servicios;
 use Illuminate\Http\Request;
 
@@ -16,9 +17,10 @@ class ClientesController extends Controller
     public function index()
     {
         return view('clientes.index', [
-            'servicios_menu' => Servicios::where('status', 'publish')
-                                        ->where('destacado', 'si')
-                                        ->get()]);
+            'servicios_menu' => Servicios::where('status', 'publish')->where('destacado', 'si'),
+            'clientes' => Video::where('status', 'publish')->get()
+            ]
+        );
     }
 
     /**

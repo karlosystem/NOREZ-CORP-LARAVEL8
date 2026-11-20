@@ -1,7 +1,0 @@
-Color primario
-#00699b
-
-Color Secundario
-#3f5a65
-
--4.24

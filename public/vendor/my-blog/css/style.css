@@ -4196,12 +4196,23 @@ p.panel-title a.collapsed {
   margin-bottom: 30px;
 }
 
+.footer .widget-tarjetas {
+  color: #fff;
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
 /* Footer about */
 .footer-about {
   padding-right: 40px;
 }
 
 .footer-logo {
+  margin: 0px 0 35px;
+}
+
+.footer-tarjetas {
   margin: 0px 0 35px;
 }
 
@@ -6129,5 +6140,8 @@ label {
 }
 
 
-
-
+.card-payment { border-radius: 12px; transition: transform 0.2s; border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.card-payment:hover { transform: translateY(-5px); }
+.badge-account { font-size: 0.9rem; padding: 0.5em 1em; }
+.label-text { color: #6c757d; font-size: 0.85rem; text-transform: uppercase; font-weight: bold; }
+.value-text { color: #212529; font-weight: 500; }

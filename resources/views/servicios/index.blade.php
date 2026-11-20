@@ -88,10 +88,8 @@
                                     <td scope="row">{{ $servicio->id }}</td>
                                     <td class="text-left">{{ $servicio->title }}</td>
                                     <td>
-                                        @if (file_exists(public_path($servicio->thumbnail)))
-                                            <img class="img-fluid" src="{{ asset($servicio->thumbnail) }}"
+                                         <img class="img-fluid" src="{{ asset($servicio->thumbnail) }}"
                                                 style="width: auto; height: 75px;">
-                                        @endif
                                     </td>
                                     <td>{{ \Carbon\Carbon::parse($servicio->created_at)->format('d-m-Y') }}</td>
                                     <td>{{ $servicio->status }}</td>
@@ -104,7 +102,7 @@
                                                 <i class="fas fa-edit"></i>
                                             </a>
                                             <!-- delete -->
-                                            <form class="d-inline" role="alert"
+                                            <form class="d-inline formulario-eliminar" role="alert"
                                                 alert-text="{{ trans('artistas.alert.delete.message.confirm', ['title' => $servicio->title]) }}"
                                                 action="{{ route('servicios.destroy', ['servicio' => $servicio]) }}"
                                                 method="POST">

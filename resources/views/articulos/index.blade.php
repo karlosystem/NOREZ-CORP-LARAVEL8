@@ -73,10 +73,10 @@
                                 <td class="text-left" scope="row">{{ $articulo->title }}</td>
                                 <td class="text-left" scope="row">{{ $articulo->servicio->title ?? 'Sin servicio' }}</td>
                                  <td>
-                                    @if (file_exists(public_path($articulo->thumbnail)))
-                                        <img class="img-fluid" src="{{ asset($articulo->thumbnail) }}"
-                                            style="width: auto; height: 75px;">
-                                    @endif
+                   
+                                    <img class="img-fluid" src="{{ asset($articulo->thumbnail) }}"
+                                                style="width: auto; height: 75px;">
+
                                 </td>
                                 <td>{{ \Carbon\Carbon::parse($articulo->created_at)->format('d-m-Y') }}</td>
                                 <td>{{ \Carbon\Carbon::parse($articulo->updated_at)->format('d-m-Y') }}</td>

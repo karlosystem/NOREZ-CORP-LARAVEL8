@@ -5,7 +5,7 @@
 @endsection
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('edit_videos', $video) }}
+    {{--  {{ Breadcrumbs::render('edit_videos', $video) }} --}}
 @endsection
 
 @section('content')
@@ -17,7 +17,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row d-flex align-items-stretch">
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <!-- title -->
                                 <div class="form-group">
                                     <label for="input_evento_name" class="font-weight-bold">
@@ -111,6 +111,76 @@
                                 </div>
 
                             </div>
+
+                            <div class="col-md-6">
+                                <!-- nombre -->
+                                <div class="form-group">
+                                    <label for="input_nombre_cliente" class="font-weight-bold">
+                                        Nombre de Cliente
+                                    </label>
+                                    <input id="input_nombre_cliente" value="{{ old('cliente', $video->cliente) }}" name="cliente"
+                                        type="text" class="form-control @error('cliente') is-invalid @enderror"
+                                        placeholder="Nombre de Cliente" />
+                                    @error('cliente')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                <!-- cargo -->
+                                <div class="form-group">
+                                    <label for="input_nombre_cliente" class="font-weight-bold">
+                                        Cargo de Cliente
+                                    </label>
+                                    <input id="input_cargo_cliente" value="{{ old('cargo', $video->cargo) }}" name="cargo"
+                                        type="text" class="form-control @error('cargo') is-invalid @enderror"
+                                        placeholder="Cargo de Cliente" />
+                                    @error('cargo')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                <!-- cargo -->
+                                <div class="form-group">
+                                    <label for="input_testimonio_cliente" class="font-weight-bold">
+                                        Testimonio
+                                    </label>
+                                    <textarea class="form-control @error('cargo') is-invalid @enderror" placeholder="Testimonio" name="testimonio"
+                                        id="testimonio" cols="30" rows="5">{{ old('testimonio', $video->testimonio) }}</textarea>
+                                    @error('testimonio')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                <!-- thumbnail -->
+                                <div class="form-group">
+                                    <label for="input_foto_cliente" class="font-weight-bold">
+                                        Foto de Cliente
+                                    </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <button id="button_foto_cliente" data-input="input_foto_cliente"
+                                                class="btn btn-primary" type="button">
+                                                Buscar Foto
+                                            </button>
+                                        </div>
+                                        <input id="input_foto_cliente" name="foto" value="{{ old('foto', $video->foto) }}"
+                                            type="text" class="form-control @error('foto') is-invalid @enderror"
+                                            placeholder="Seleccionar Foto" readonly />
+                                        @error('foto')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="row">
                             <div class="col-md-12">
@@ -149,7 +219,7 @@
 
             //file manager
             $('#button_video_thumbnail').filemanager('image')
-
+            $('#button_foto_cliente').filemanager('image')
         });
     </script>
 @endpush

@@ -49,11 +49,13 @@
                                <li class="nav-item dropdown"><a class="nav-link" href="#"
                                        data-toggle="dropdown">Acerca de<i class="fa fa-angle-down"></i></a>
                                    <ul class="dropdown-menu" role="menu">
-                                       <li><a href="#">Nosotros </a></li>
-                                       <li><a href="#">Nuestro Equipo</a></li>
-                                       <li><a href="#">Precios </a></li>
-                                       <li><a href="#">Preguntas</a></li>
-                                       <li><a href="#">Galeria</a></li>
+                                       @forelse ($contenidos_menu as $menu_contenido)
+                                           <li>
+                                            <a href="{{ route('blog.paginas.contenidos', ['slug' => $menu_contenido->slug]) }}">{{ $menu_contenido->title }}                                                
+                                            </a>
+                                           </li>
+                                       @empty
+                                       @endforelse
                                    </ul>
                                </li>
                                <!-- li end-->
@@ -76,6 +78,11 @@
                                <li class="nav-item dropdown">
                                    <a href="{{ route('clientes.index') }}">Clientes</a>
                                </li>
+
+                               <li class="nav-item dropdown">
+                                   <a href="{{ route('formas.index') }}">Formas de Pago</a>
+                               </li>
+
                                <!-- li end-->
                                <li class="nav-item dropdown">
                                    <a href="{{ route('album.mostrar') }}">Galeria</a>
