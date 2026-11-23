@@ -78,17 +78,57 @@ El sistema incluye funcionalidades de administración de contenidos para facilit
 
 ## 🖥️ Capturas de pantalla
 
-### Página de inicio
+Las siguientes imágenes muestran algunas de las principales interfaces y funcionalidades del sitio web corporativo y su panel administrativo.
 
-<!-- Agregar captura de pantalla de la página principal -->
+### 🌐 Sitio web público
 
-### Servicios
+#### Página de inicio
 
-<!-- Agregar captura de pantalla de la sección de servicios -->
+![Página de inicio](assets/screenshots/inicio.png)
 
-### Panel administrativo
+#### Galería
 
-<!-- Agregar captura de pantalla del panel de administración -->
+![Galería](assets/screenshots/galeria.png)
+
+#### Proyectos
+
+![Proyectos](assets/screenshots/proyectos.png)
+
+#### Contacto
+
+![Contacto](assets/screenshots/contacto.png)
+
+---
+
+### ⚙️ Panel administrativo
+
+#### Inicio de sesión
+
+![Login](assets/screenshots/login.png)
+
+#### Dashboard administrativo
+
+![Dashboard](assets/screenshots/dashboard.png)
+
+#### Gestión de artículos
+
+![Listado de artículos](assets/screenshots/articulos-listado.png)
+
+#### Creación de artículos
+
+![Crear artículo](assets/screenshots/articulo-crear.png)
+
+#### Gestión de clientes
+
+![Clientes](assets/screenshots/clientes.png)
+
+#### Gestión de formas de pago
+
+![Formas de pago](assets/screenshots/formas-de-pago.png)
+
+#### Gestión de sliders
+
+![Sliders](assets/screenshots/sliders.png)
 
 ---
 
@@ -103,6 +143,20 @@ NOREZ-CORP-LARAVEL8/
 │   ├── Http/
 │   ├── Models/
 │   └── ...
+│
+├── assets/
+│   └── screenshots/
+│       ├── articulo-crear.png
+│       ├── articulos-listado.png
+│       ├── clientes.png
+│       ├── contacto.png
+│       ├── dashboard.png
+│       ├── formas-de-pago.png
+│       ├── galeria.png
+│       ├── inicio.png
+│       ├── login.png
+│       ├── proyectos.png
+│       └── sliders.png
 │
 ├── bootstrap/
 ├── config/
@@ -124,132 +178,3 @@ NOREZ-CORP-LARAVEL8/
 ├── package.json
 ├── webpack.mix.js
 └── README.md
-```
-
----
-
-## 🛠️ Requisitos de instalación
-
-Para ejecutar el proyecto en un entorno local se recomienda disponer de:
-
-- PHP compatible con Laravel 8.
-- Composer.
-- MySQL o MariaDB.
-- Apache.
-- Node.js y NPM.
-- Git.
-
-El proyecto puede ejecutarse en un entorno de desarrollo como XAMPP.
-
----
-
-## ⚙️ Instalación y configuración
-
-### 1. Clonar el repositorio
-
-```bash
-git clone https://github.com/karlosystem/NOREZ-CORP-LARAVEL8.git
-```
-
-### 2. Acceder al directorio
-
-```bash
-cd NOREZ-CORP-LARAVEL8
-```
-
-### 3. Instalar dependencias PHP
-
-```bash
-composer install
-```
-
-### 4. Configurar el archivo de entorno
-
-Copiar el archivo de configuración de entorno:
-
-```bash
-cp .env.example .env
-```
-
-Configurar los parámetros de conexión a la base de datos en el archivo `.env`.
-
-```env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=nombre_base_datos
-DB_USERNAME=usuario
-DB_PASSWORD=contraseña
-```
-
-### 5. Generar la clave de aplicación
-
-```bash
-php artisan key:generate
-```
-
-### 6. Instalar dependencias frontend
-
-```bash
-npm install
-```
-
-### 7. Compilar recursos frontend
-
-```bash
-npm run dev
-```
-
-Para generar recursos optimizados:
-
-```bash
-npm run production
-```
-
-### 8. Ejecutar el proyecto
-
-```bash
-php artisan serve
-```
-
-El sitio estará disponible en:
-
-```text
-http://127.0.0.1:8000
-```
-
----
-
-## 🔐 Seguridad
-
-Este repositorio contiene el código fuente del proyecto.
-
-Por seguridad, los siguientes elementos no deben publicarse:
-
-- Archivo `.env`.
-- Credenciales de bases de datos.
-- Claves privadas.
-- Datos de acceso a servicios externos.
-- Información confidencial de clientes.
-
----
-
-## 🌍 Producción
-
-El sitio web se encuentra publicado en:
-
-**[https://norez-corp.com/](https://norez-corp.com/)**
-
----
-
-## 👨‍💻 Autor
-
-Desarrollado como proyecto de desarrollo web utilizando Laravel 8 y tecnologías web complementarias.
-
----
-
-## 📄 Licencia
-
-Este repositorio se publica con fines de documentación y presentación de un proyecto de desarrollo web.
-
-El uso, distribución o reutilización del código debe respetar los derechos y licencias de los componentes, recursos y materiales incorporados al proyecto.
